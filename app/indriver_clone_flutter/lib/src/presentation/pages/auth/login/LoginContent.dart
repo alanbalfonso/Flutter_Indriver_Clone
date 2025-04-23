@@ -27,7 +27,7 @@ class LoginContent extends StatelessWidget {
           children: [
             _textLoginRotated(),
             SizedBox(height: 100),
-            _textRegisterRotated(),
+            _textRegisterRotated(context),
             SizedBox(height: MediaQuery.of(context).size.height * 0.25),
           ],
         ),
@@ -68,7 +68,7 @@ class LoginContent extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              _textDonHaveAccount(),
+              _textDonHaveAccount(context),
               SizedBox(
                 height: 50,
               )
@@ -79,7 +79,7 @@ class LoginContent extends StatelessWidget {
     ]);
   }
 
-  Widget _textDonHaveAccount() {
+  Widget _textDonHaveAccount(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -90,10 +90,15 @@ class LoginContent extends StatelessWidget {
         SizedBox(
           width: 7,
         ),
-        Text(
-          'Registrate',
-          style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, 'register');
+          },
+          child: Text(
+            'Registrate',
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17),
+          ),
         )
       ],
     );
@@ -150,12 +155,17 @@ class LoginContent extends StatelessWidget {
     );
   }
 
-  Widget _textRegisterRotated() {
-    return RotatedBox(
-      quarterTurns: 1,
-      child: Text(
-        'Register',
-        style: TextStyle(color: Colors.white, fontSize: 24),
+  Widget _textRegisterRotated(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, 'register');
+      },
+      child: RotatedBox(
+        quarterTurns: 1,
+        child: Text(
+          'Register',
+          style: TextStyle(color: Colors.white, fontSize: 24),
+        ),
       ),
     );
   }
